@@ -37,28 +37,36 @@ const HamburgerHolder = styled.div`
   }
 `
 
+const NavBar = styled.div`
+    position: fixed;
+    top: 60px;
+    left: -230px;
+    bottom: 0;
+    z-index: 100;
+    width: 230px;
+    background-color: #1D2939;
+    //padding-left: 10px;
+    //padding-right: 10px;
+    transition: all 0.2s ease-in-out;
+    ${({openMenu}) => openMenu && `
+        left: 0px;
+        background: lightgrey;
+      `}
+    `
+
 class Header extends Component {
-    state = {
-        menuIsOpen: true
-    }
     render() {
         return (
-            <StyledHeader openMenu={this.state.menuIsOpen}>
-                {/*<button*/}
-
-                {/*>*/}
-                    {/*Click me*/}
-                {/*</button>*/}
-                <HamburgerHolder onClick={() => {
-                    this.setState({menuIsOpen: !this.state.menuIsOpen})
-                }}>
-                    <i className="icon ion-navicon-round"/>
-                </HamburgerHolder>
-
-
-
-
-            </StyledHeader>
+            <div>
+                <StyledHeader openMenu={this.props.menuIsOpen}>
+                    <HamburgerHolder onClick={this.props.toggle}>
+                        <i className="icon ion-navicon-round"/>
+                    </HamburgerHolder>
+                <NavBar openMenu={this.props.menuIsOpen}>
+                    hello
+                </NavBar>
+                </StyledHeader>
+            </div>
         );
     }
 }

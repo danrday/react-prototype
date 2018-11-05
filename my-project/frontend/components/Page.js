@@ -9,20 +9,30 @@ const StyledPage = styled.div`
 `
 
 const Inner = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
-  background: red;
+  margin-left: 0;
+  margin-top: 60px;
+  transition: all 0.2s ease-in-out;
+  ${({openMenu}) => openMenu && `
+        margin-left: 230px;
+      `}
 `
 
 class Page extends Component {
+    state = {
+        menuIsOpen: true
+    }
+
+    handleToggle = () => {
+        this.setState({menuIsOpen: !this.state.menuIsOpen})
+    }
+
     render() {
         return (
             <StyledPage>
                 <Meta/>
-                <Header/>
-                <Inner>
-                { this.props.children }
+                <Header menuIsOpen={this.state.menuIsOpen} toggle={this.handleToggle}/>
+                <Inner openMenu={this.state.menuIsOpen}>
+                    { this.props.children }
                 </Inner>
             </StyledPage>
         );
