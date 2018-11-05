@@ -22,6 +22,21 @@ const StyledHeader = styled.div`
   }  
 `
 
+const HamburgerHolder = styled.div`
+    width: 60px;
+    height: 60px;
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #868e96;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: teal;
+  }
+`
+
 class Header extends Component {
     state = {
         menuIsOpen: true
@@ -29,13 +44,20 @@ class Header extends Component {
     render() {
         return (
             <StyledHeader openMenu={this.state.menuIsOpen}>
-                <button
-                    onClick={() => {
-                        this.setState({menuIsOpen: !this.state.menuIsOpen})
-                    }}
-                >
-                    Click me
-                </button>
+                {/*<button*/}
+
+                {/*>*/}
+                    {/*Click me*/}
+                {/*</button>*/}
+                <HamburgerHolder onClick={() => {
+                    this.setState({menuIsOpen: !this.state.menuIsOpen})
+                }}>
+                    <i className="icon ion-navicon-round"/>
+                </HamburgerHolder>
+
+
+
+
             </StyledHeader>
         );
     }
