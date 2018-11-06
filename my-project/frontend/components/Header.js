@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import Link from 'next/link'
 import styled from 'styled-components'
 
 const StyledHeader = styled.div`
@@ -90,6 +91,14 @@ const MenuItem = styled.div`
   }
 `
 
+
+const Title = styled.div`
+  font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  margin-right: 20px;
+  margin-bottom: 0px;
+  letter-spacing: -1px;  
+`
+
 class Header extends Component {
     state = {
         hovering: false
@@ -105,43 +114,53 @@ class Header extends Component {
                         <i className="icon ion-navicon-round"/>
                     </HamburgerHolder>
 
-                    <NavBar onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} openMenu={this.props.menuIsOpen || this.state.hovering}>
+                    <Title>
+                        <h4>Title</h4>
+                    </Title>
 
-                        <MenuItem>
-                            <MenuIconHolder>
-                                <MenuIcon>
-                                    <i className="icon ion-ios-home-outline"></i>
-                                </MenuIcon>
-                            </MenuIconHolder>
+                    <NavBar onMouseEnter={this.props.hover} onMouseLeave={this.props.hover} openMenu={this.props.menuIsOpen}>
 
-                            <MenuItemText>
-                                Dashboard
-                            </MenuItemText>
-                        </MenuItem>
+                        <Link href='/'>
+                            <MenuItem>
+                                <MenuIconHolder>
+                                    <MenuIcon>
+                                        <i className="icon ion-ios-home-outline"></i>
+                                    </MenuIcon>
+                                </MenuIconHolder>
 
-                        <MenuItem>
-                            <MenuIconHolder>
-                                <MenuIcon>
-                                    <i className="icon ion-ios-photos-outline"></i>
-                                </MenuIcon>
-                            </MenuIconHolder>
+                                <MenuItemText>
+                                    Dashboard
+                                </MenuItemText>
+                            </MenuItem>
+                        </Link>
 
-                            <MenuItemText>
-                                A Page
-                            </MenuItemText>
-                        </MenuItem>
+                        <Link href='/page2'>
+                            <MenuItem>
+                                <MenuIconHolder>
+                                    <MenuIcon>
+                                        <i className="icon ion-ios-photos-outline"></i>
+                                    </MenuIcon>
+                                </MenuIconHolder>
 
-                        <MenuItem>
-                            <MenuIconHolder>
-                                <MenuIcon>
-                                    <i className="icon ion-ios-email-outline"></i>
-                                </MenuIcon>
-                            </MenuIconHolder>
+                                <MenuItemText>
+                                    A Page
+                                </MenuItemText>
+                            </MenuItem>
+                        </Link>
 
-                            <MenuItemText>
-                                Other Page
-                            </MenuItemText>
-                        </MenuItem>
+                        <Link href='/page3'>
+                            <MenuItem>
+                                <MenuIconHolder>
+                                    <MenuIcon>
+                                        <i className="icon ion-ios-email-outline"></i>
+                                    </MenuIcon>
+                                </MenuIconHolder>
+
+                                <MenuItemText>
+                                    Other Page
+                                </MenuItemText>
+                            </MenuItem>
+                        </Link>
 
                     </NavBar>
 

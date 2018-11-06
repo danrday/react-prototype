@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const PageTwo = props => (
     <div>
-        <Link href='/'>To home page!asdfsdafdsafdfsgfdgsdfgsdfgdfsgdfsgfdsgfdsgdfsgfdsgsdf</Link>
+        <Link href='/'>This is Page 2!  To home page!</Link>
     </div>
 )
 
