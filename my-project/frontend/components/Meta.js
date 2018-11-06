@@ -7,7 +7,7 @@ const Meta = () => (
         <link rel="shortcut icon" href="/static/favicon.png" />
         <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         <link rel="stylesheet" type="text/css" href="/static/ionicons.css" />
-        {/*<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />*/}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <title>This is the title!</title>
     </Head>
 )
