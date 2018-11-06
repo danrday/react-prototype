@@ -133,7 +133,7 @@ class Header extends Component {
 
                     <NavBar onMouseEnter={() => this.props.hover(true)} onMouseLeave={() => this.props.hover(false)} openMenu={this.props.menuIsOpen}>
 
-                        <Link href='/'>
+                        <Link href="/">
                             <MenuItem>
                                 <MenuIconHolder>
                                     <MenuIcon>
@@ -147,7 +147,7 @@ class Header extends Component {
                             </MenuItem>
                         </Link>
 
-                        <Link href='/page2'>
+                        <Link href="/page2">
                             <MenuItem>
                                 <MenuIconHolder>
                                     <MenuIcon>
@@ -161,7 +161,7 @@ class Header extends Component {
                             </MenuItem>
                         </Link>
 
-                        <Link href='/page3'>
+                        <Link href="/page3">
                             <MenuItem>
                                 <MenuIconHolder>
                                     <MenuIcon>

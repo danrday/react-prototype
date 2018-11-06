@@ -58,3 +58,12 @@ pages/_app.js is our entry point, Next.js recognizes this as a custom 'App' comp
     -Custom error handling using componentDidCatch
     -Inject additional data into pages (for example by processing GraphQL queries)
 
+
+#graphql-
+one endpoint you can hit for any query
+strongly typed
+
+you get the benefit of tools being able to analyze your code and provide to you a whole bunch of documentation.
+
+
+
