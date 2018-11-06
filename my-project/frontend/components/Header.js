@@ -46,7 +46,7 @@ const HamburgerHolder = styled.div`
     font-size: 20px;
     transition: all 0.2s ease-in-out;
     &:hover {
-      background-color: teal;
+      background-color: lightsteelblue;
   }
 `
 

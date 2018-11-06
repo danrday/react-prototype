@@ -67,3 +67,14 @@ you get the benefit of tools being able to analyze your code and provide to you 
 
 
 
+#APOLLO
+apollo does all the data management stuff that a redux store would do, plus:
+fetching of data from server side
+pushing of data to your mutations
+do caching
+it helps manage local state
+gives you error and loading UI states (never have to set flags, never have to manually catch errors)
+
+(gold standard for working with GraphQL in React)
+
+
