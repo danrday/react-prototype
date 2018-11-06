@@ -1,6 +1,18 @@
 import React, {Component} from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+
+Router.onRouteChangeStart = () => {
+    NProgress.start()
+}
+Router.onRouteChangeComplete = () => {
+    NProgress.done()
+}
+Router.onRouteChangeError = () => {
+    NProgress.done()
+}
 
 const StyledHeader = styled.div`
   & {
@@ -94,6 +106,7 @@ const MenuItem = styled.div`
 
 const Title = styled.div`
   font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  font-size: 2rem;
   margin-right: 20px;
   margin-bottom: 0px;
   letter-spacing: -1px;  
@@ -118,7 +131,7 @@ class Header extends Component {
                         <h4>Title</h4>
                     </Title>
 
-                    <NavBar onMouseEnter={this.props.hover} onMouseLeave={this.props.hover} openMenu={this.props.menuIsOpen}>
+                    <NavBar onMouseEnter={() => this.props.hover(true)} onMouseLeave={() => this.props.hover(false)} openMenu={this.props.menuIsOpen}>
 
                         <Link href='/'>
                             <MenuItem>
