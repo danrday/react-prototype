@@ -54,41 +54,12 @@ const NavBar = styled.div`
       `}
     `
 
-const NavBarLabel = styled.div`
-    //display: block;
-    //text-transform: uppercase;
-    //font-size: 10px;
-    //font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-    //color: black;
-    //letter-spacing: 1px;
-    //opacity: .3;
-    //white-space: nowrap;
-`
-
-const MenuLink = styled.div`
-    //color: black;
-    //display: block;
-    //font-size: 14px;
-    //border-radius: 2px;
-    //transition: all 0.2s ease-in-out;
-    //width: 60px;
-`
-
-const MenuItem = styled.div`
-    //display: flex;
-    //align-items: center;
-    //justify-content: flex-start;
-    //padding: 0 15px;
-    //height: 40px;
-    //letter-spacing: 0.2px;
-    //font-size: .85rem;
-`
-
 const MenuIconHolder = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 60px;
+    position: fixed;
 `
 
 const MenuIcon = styled.div`
@@ -96,7 +67,36 @@ const MenuIcon = styled.div`
   transition: all 0.2s ease-in-out;
 `
 
+const MenuItemText = styled.div`
+  white-space: nowrap;
+  margin-left: 65px;
+  margin-right: auto;
+  letter-spacing: 0.2px;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+
+`
+
+const MenuItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: hidden;
+  height: 30px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+      background-color: mintcream;
+      cursor: pointer;
+  }
+`
+
 class Header extends Component {
+    state = {
+        hovering: false
+    }
+    handleHover = () => {
+        this.setState({hovering: !this.state.hovering})
+    }
     render() {
         return (
             <div>
@@ -105,13 +105,43 @@ class Header extends Component {
                         <i className="icon ion-navicon-round"/>
                     </HamburgerHolder>
 
-                    <NavBar openMenu={this.props.menuIsOpen}>
+                    <NavBar onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} openMenu={this.props.menuIsOpen || this.state.hovering}>
 
-                        <MenuIconHolder>
-                            <MenuIcon>
-                                <i className="menu-item-icon icon ion-ios-home-outline tx-22"></i>
-                            </MenuIcon>
-                        </MenuIconHolder>
+                        <MenuItem>
+                            <MenuIconHolder>
+                                <MenuIcon>
+                                    <i className="icon ion-ios-home-outline"></i>
+                                </MenuIcon>
+                            </MenuIconHolder>
+
+                            <MenuItemText>
+                                Dashboard
+                            </MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem>
+                            <MenuIconHolder>
+                                <MenuIcon>
+                                    <i className="icon ion-ios-photos-outline"></i>
+                                </MenuIcon>
+                            </MenuIconHolder>
+
+                            <MenuItemText>
+                                A Page
+                            </MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem>
+                            <MenuIconHolder>
+                                <MenuIcon>
+                                    <i className="icon ion-ios-email-outline"></i>
+                                </MenuIcon>
+                            </MenuIconHolder>
+
+                            <MenuItemText>
+                                Other Page
+                            </MenuItemText>
+                        </MenuItem>
 
                     </NavBar>
 
