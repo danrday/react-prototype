@@ -161,7 +161,7 @@ class Header extends Component {
                             </MenuItem>
                         </Link>
 
-                        <Link href="/page3">
+                        <Link href="test/page3">
                             <MenuItem>
                                 <MenuIconHolder>
                                     <MenuIcon>
