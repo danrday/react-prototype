@@ -17,7 +17,7 @@ function createServer() {
     resolverValidationOptions: {
       requireResolversForResolveType: false
     },
-    context: req => ({ ...req, filmLoader})
+    context: req => ({ ...req, filmLoader: filmLoader()})
   });
 }
 

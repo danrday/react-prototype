@@ -1,7 +1,7 @@
 const fetch = require("node-fetch")
 const DataLoader = require('dataloader');
 
-const filmLoader = new DataLoader(films => resolveFilms(films))
+const filmLoader = () => new DataLoader(films => resolveFilms(films))
 
 const resolveFilms = async films => {
     const promises = films.map(async url => {
