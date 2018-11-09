@@ -2,7 +2,7 @@ const { GraphQLServer } = require("graphql-yoga");
 const Mutations = require("./resolvers/Mutations");
 const Queries = require("./resolvers/Queries");
 const {PersonResolver, PlanetResolver} = require("./resolvers/QueryResolvers");
-// const filmLoader = require("./loaders/filmLoader.ts")
+const filmLoader = require("./loaders/filmLoader")
 
 // create the graphql yoga server
 function createServer() {
@@ -17,7 +17,7 @@ function createServer() {
     resolverValidationOptions: {
       requireResolversForResolveType: false
     },
-    context: req => ({ ...req})
+    context: req => ({ ...req, filmLoader})
   });
 }
 

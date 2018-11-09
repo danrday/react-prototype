@@ -1,32 +1,18 @@
 const fetch = require("node-fetch")
-const DataLoader = require('dataloader');
 
+// const resolveFilmsWithoutDataLoader = async parent => {
+//     const promises = parent.films.map(async url => {
+//         console.log("URL", url)
+//         const response = await fetch(url)
+//         return response.json()
+//     })
+//     return Promise.all(promises)
+// }
 
-
-const resolveFilms = async parent => {
-    const promises = parent.films.map(async url => {
-        const response = await fetch(url)
-        return response.json()
-    })
-    return Promise.all(promises)
-}
-
-
-const filmLoader = new DataLoader(films => resolveFilmz(films))
-
-const resolveFilmz = async films => {
-    const promises = films.map(async url => {
-        const response = await fetch(url)
-        return response.json()
-    })
-    return Promise.all(promises)
-}
-
-const loadEm = async parent => {
-    // console.log('parent', parent)
-    let films = parent.films
-    let test = await filmLoader.loadMany(films)
-    return test
+const batchResolveFilms = async (parent, _, {filmLoader}) => {
+    const films = parent.films
+    const res = await filmLoader.loadMany(films)
+    return res
 }
 
 const PersonResolver = {
@@ -34,11 +20,11 @@ const PersonResolver = {
         const response = await fetch(parent.homeworld)
         return response.json()
     },
-    films: loadEm
+    films: batchResolveFilms
 }
 
 PlanetResolver = {
-    films: loadEm
+    films: batchResolveFilms
 }
 
 module.exports = {PersonResolver, PlanetResolver};
