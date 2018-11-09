@@ -14,15 +14,6 @@ const Queries = {
 
 }
 
-const PersonResolver = {
-    films: parent => {
-        const promises = parent.films.map(async url => {
-            const response = await fetch(url)
-            return response.json()
-        })
-        return Promise.all(promises)
-    }
-}
 
 
-module.exports = {Queries, PersonResolver};
+module.exports = Queries;

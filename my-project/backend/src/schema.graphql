@@ -11,6 +11,13 @@ type Query {
     getPerson(id: Int!): Person
 }
 
+type Planet {
+    name: String
+    rotation_period: String
+    orbital_period: String
+    films: [Film]
+}
+
 type Film {
     title: String,
     episode_id: Int,
@@ -30,4 +37,5 @@ type Person {
     birth_year: String,
     gender: String,
     films: [Film]
+    homeworld: Planet
 }
