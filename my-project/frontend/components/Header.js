@@ -103,7 +103,6 @@ const MenuItem = styled.div`
   }
 `
 
-
 const Title = styled.div`
   font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
   font-size: 2rem;
@@ -161,7 +160,7 @@ class Header extends Component {
                             </MenuItem>
                         </Link>
 
-                        <Link href="test/page3">
+                        <Link href="/test/page3">
                             <MenuItem>
                                 <MenuIconHolder>
                                     <MenuIcon>
