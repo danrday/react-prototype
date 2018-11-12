@@ -1,13 +1,13 @@
 const fetch = require("node-fetch")
 
-const resolveFilmsWithoutDataLoader = async parent => {
-    const promises = parent.films.map(async url => {
-        console.log("URL", url)
-        const response = await fetch(url)
-        return response.json()
-    })
-    return Promise.all(promises)
-}
+// const resolveFilmsWithoutDataLoader = async parent => {
+//     const promises = parent.films.map(async url => {
+//         console.log("URL", url)
+//         const response = await fetch(url)
+//         return response.json()
+//     })
+//     return Promise.all(promises)
+// }
 
 const batchResolveFilms = async (parent, _, {filmLoader}) => {
     const films = parent.films
