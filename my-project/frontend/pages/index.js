@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Home = props => (
     <div>
-        Home page.
+        Home page. Version: $$VERSION
     </div>
 )
 
