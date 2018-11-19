@@ -8,6 +8,6 @@ const Mutations = {
         return newDog
     }
 
-};
+}
 
 module.exports = Mutations;

@@ -1,8 +1,5 @@
 const fetch = require("node-fetch")
-const { createError } = require('apollo-errors')
-const {baseResolver, isAuthenticatedResolver} = require('./abstractResolvers')
-const { UnknownError, UnauthorizedError, ForbiddenError } = require('./errors')
-
+const {isAuthenticatedResolver} = require('./abstractResolvers')
 
 const dogs = (parent, args, ctx, info) => {
     global.dogs = global.dogs || []
