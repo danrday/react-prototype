@@ -14,6 +14,14 @@ class MyApp extends App {
         return { pageProps }
     }
 
+    /*all runtime errors should bubble up and be intercepted here
+    * so we can (TO DO) send them to the server for logging*/
+    componentDidCatch (error, errorInfo) {
+        console.log("Hey I caught an error!", error)
+        // This is needed to render errors correctly in development / production
+        super.componentDidCatch(error, errorInfo)
+    }
+
     render() {
         const {Component, apollo, pageProps} = this.props
 
