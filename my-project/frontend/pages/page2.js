@@ -18,7 +18,7 @@ const GET_PERSON_QUERY = gql`
 
 class PageTwo extends Component {
     render() {
-        throw new Error("Test error!")
+        // throw new Error("Test error!")
         return (
             <div>
                 <div>Page 2</div>
