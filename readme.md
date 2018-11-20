@@ -2,6 +2,56 @@
 
 ![Tech stack: React, Next.js, Apollo, GraphQL-Yoga](./techstack.jpg)
 
+### Project Dependencies
+
+Explanation of some of the dependencies of our project for quick reference.
+
+| Dependency | Description |
+| ------ | ------ |
+| date-fns | JavaScript date utility library |
+| downshift | Primitives to build autocomplete/dropdown/select/combobox components |
+| enzyme | JavaScript Testing utility for React |
+| graphql-tag | Utilities for parsing GraphQL queries |
+| nprogress | A nanoscopic progress bar |
+| prop-types | Runtime type checking for React props and similar objects |
+| react-adopt | Simple method that composes multiple render prop components |
+| react-transition-group | Perform animations when a React component enters or leaves the DOM |
+| waait | Returns a promise that resolves after how many milliseconds you pass it |
+| casual | Fake data generator |
+
+### App structure
+  - pages/_app.js is our entry point, Next.js recognizes this as a custom 'App' component. This is nice for:
+     - Persisting layout between page changes
+     - Keeping state when navigating pages
+     - Custom error handling using componentDidCatch
+     - Inject additional data into pages (for example by processing GraphQL queries)
+  - We import Link from 'next/link' to use pushstate instead of reloading browser when page changes
+
+
+### Tech
+`#` Next.js
+  - Does all of the tooling for you under the hood (webpack compiling, code-splitting)
+  - Server side rendering (instant rendering, pre-loading)
+  - getInitialProps lifecycle method allows you to wait on async data to resolve before the page is shipped to the browser
+  - does routing for you, nice because you just have to make pages
+
+`#` GraphQL
+  - one endpoint you can hit for any query
+  - strongly typed
+  - you get the benefit of tools being able to analyze your code and provide to you a whole bunch of documentation.
+
+  `#` Apollo
+  - apollo does all the data management stuff that a redux store would do, plus:
+  - fetching of data from server side
+  - pushing of data to your mutations
+  - do caching
+  - it helps manage local state
+  - gives you error and loading UI states (never have to set flags, never have to manually catch errors)
+  - (gold standard for working with GraphQL in React)
+
+
+
+
 Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
 
   - Type some Markdown on the left
