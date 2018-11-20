@@ -4,104 +4,237 @@ import Link from 'next/link'
 
 var React = require('react')
 var ReactFauxDOM = require('react-faux-dom')
+import {withFauxDOM} from 'react-faux-dom'
+
 var d3 = require('d3')
+var { hierarchy, tree } = require('d3-hierarchy')
 
 
 class FrequencyChart extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            actualDiv: null,
+            displayChart: false
+        };
     }
     drawChart() {
-        const div = new ReactFauxDOM.createElement('div');
+        // const div = new ReactFauxDOM.createElement('div');
+
+        const faux = this.props.connectFauxDOM('div', 'chart')
         // ...
-        const width= 960
-        const height= 600
-        const data= [
-            {letter: "A", frequency: .08167},
-            {letter: "B", frequency: .01492},
-            {letter: "C", frequency: .02780},
-            {letter: "D", frequency: .04253},
-            {letter: "E", frequency: .12702},
-            {letter: "F", frequency: .02288},
-            {letter: "G", frequency: .02022},
-            {letter: "H", frequency: .06094},
-            {letter: "I", frequency: .06973},
-            {letter: "J", frequency: .00153},
-            {letter: "K", frequency: .00747},
-            {letter: "L", frequency: .04025},
-            {letter: "M", frequency: .02517},
-            {letter: "N", frequency: .06749},
-            {letter: "O", frequency: .07507},
-            {letter: "P", frequency: .01929},
-            {letter: "Q", frequency: .00098},
-            {letter: "R", frequency: .05987},
-            {letter: "S", frequency: .06333},
-            {letter: "T", frequency: .09056},
-            {letter: "U", frequency: .02758},
-            {letter: "V", frequency: .01037},
-            {letter: "W", frequency: .02465},
-            {letter: "X", frequency: .00150},
-            {letter: "Y", frequency: .01971},
-            {letter: "Z", frequency: .00074},
-        ]
+        var treeData =
+            {
+                "name": "Top Level",
+                "value": 10,
+                "type": "black",
+                "level": "red",
+                "children": [
+                    {
+                        "name": "Level 2: A",
+                        "value": 15,
+                        "type": "grey",
+                        "level": "red",
+                        "children": [
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red"
+                            },
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red"
+                            },
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Level 2: B",
+                        "value": 10,
+                        "type": "grey",
+                        "level": "green",
+                        "children": [
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red",
+                                "children": [
+                                    {
+                                        "name": "Son of A",
+                                        "value": 5,
+                                        "type": "steelblue",
+                                        "level": "orange"
+                                    },
+                                    {
+                                        "name": "Daughter of A",
+                                        "value": 8,
+                                        "type": "steelblue",
+                                        "level": "red"
+                                    },
+                                    {
+                                        "name": "Son of A",
+                                        "value": 5,
+                                        "type": "steelblue",
+                                        "level": "orange"
+                                    },
+                                    {
+                                        "name": "Daughter of A",
+                                        "value": 8,
+                                        "type": "steelblue",
+                                        "level": "red"
+                                    },
+                                    {
+                                        "name": "Son of A",
+                                        "value": 5,
+                                        "type": "steelblue",
+                                        "level": "orange"
+                                    },
+                                    {
+                                        "name": "Daughter of A",
+                                        "value": 8,
+                                        "type": "steelblue",
+                                        "level": "red"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red"
+                            },
+                            {
+                                "name": "Son of A",
+                                "value": 5,
+                                "type": "steelblue",
+                                "level": "orange"
+                            },
+                            {
+                                "name": "Daughter of A",
+                                "value": 8,
+                                "type": "steelblue",
+                                "level": "red"
+                            }
+                        ]
+                    }
+                ]
+            };
 
-        let margin = {top: 20, right: 20, bottom: 30, left: 40}
-            // width = this.props.width - margin.left - margin.right,
-            // height = this.props.height - margin.top - margin.bottom;
+            // Set the dimensions and margins of the diagram
+                    var margin = {top: 20, right: 90, bottom: 30, left: 190},
+                        width = 960 - margin.left - margin.right,
+                        height = 500 - margin.top - margin.bottom;
 
-        let x = d3.scaleBand()
-            .rangeRound([0, width])
+        var treemap = d3.tree()
+            .size([height, width]);
 
-        let y = d3.scaleLinear()
-            .range([height, 0])
+//  assigns the data to a hierarchy using parent-child relationships
+        var nodes = d3.hierarchy(treeData, function(d) {
+            return d.children;
+        });
 
-        let xAxis = d3.axisBottom()
-            .scale(x)
+// maps the node data to the tree layout
+        nodes = treemap(nodes);
 
-        let yAxis = d3.axisLeft()
-            .scale(y)
-            .ticks(10, "%");
+// append the svg object to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+        var svg = d3.select(faux).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom),
+            g = svg.append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
 
-        //Pass it to d3.select and proceed as normal
-        let svg = d3.select(div).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+// adds the links between the nodes
+        var link = g.selectAll(".link")
+            .data( nodes.descendants().slice(1))
+            .enter().append("path")
+            .attr("class", "link")
+            .style("stroke", function(d) { return d.data.level; })
+            .attr("d", function(d) {
+                return "M" + d.y + "," + d.x
+                    + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+                    + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+                    + " " + d.parent.y + "," + d.parent.x;
+            });
 
+// adds each node as a group
+        var node = g.selectAll(".node")
+            .data(nodes.descendants())
+            .enter().append("g")
+            .attr("class", function(d) {
+                return "node" +
+                    (d.children ? " node--internal" : " node--leaf"); })
+            .attr("transform", function(d) {
+                return "translate(" + d.y + "," + d.x + ")"; });
 
-        x.domain(data.map((d) => d.letter));
-        y.domain([0, d3.max(data, (d) => d.frequency)]);
+// adds the circle to the node
+        node.append("circle")
+            .attr("r", function(d) { return d.data.value; })
+            .style("stroke", function(d) { return d.data.type; })
+            .style("fill", function(d) { return d.data.level; });
 
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", `translate(0,${height})`)
-            .call(xAxis);
+// adds the text to the node
+        node.append("text")
+            .attr("dy", ".35em")
+            .attr("x", function(d) { return d.children ?
+                (d.data.value + 4) * -1 : d.data.value + 4 })
+            .style("text-anchor", function(d) {
+                return d.children ? "end" : "start"; })
+            .text(function(d) { return d.data.name; });
 
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Frequency");
+        // return div.toReact()
+        return faux
+    }
 
-        svg.selectAll(".bar")
-            .data(data)
-            .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", (d) => x(d.letter))
-            .attr("width", 20)
-            .attr("y", (d) => y(d.frequency))
-            .attr("height", (d) => {return height - y(d.frequency)});
-
-        return div.toReact()
+    componentDidMount () {
+        this.drawChart();
+        // this.setState({displayChart: true})
     }
 
     render () {
-        return this.drawChart();
+        // return <div className="app">{this.state.displayChart && (this.drawChart())}</div>
+        return <div className="app">{this.props.chart}</div>
     }
 }
-export default FrequencyChart;
+export default withFauxDOM(FrequencyChart);
