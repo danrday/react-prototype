@@ -1,32 +1,28 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import Link from 'next/link'
-import { Query } from 'react-apollo';
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
-
 const GET_PERSON_QUERY = gql`
-    query GET_PERSON_QUERY (
-    $id: Int!
-    ) {
-        getPerson(
-            id: $id
-        ) {
+    query GET_PERSON_QUERY($id: Int!) {
+        getPerson(id: $id) {
             name
         }
     }
-`;
+`
 
 class PageTwo extends Component {
     render() {
-        // throw new Error("Test error!")
+        // throw Error("Test error!")
         return (
             <div>
                 <div>Page 2</div>
-                <Query query={GET_PERSON_QUERY} variables={{id: 1}}>
-                    {({data, error, loading}) => {
+                <div>Hello!</div>
+                <Query query={GET_PERSON_QUERY} variables={{ id: 1 }}>
+                    {({ data, error, loading }) => {
                         console.log('payload', data)
-                        if (loading) return <p>Loading</p>;
-                        if (error) return <p>Error: {error.message}</p>;
+                        if (loading) return <p>Loading</p>
+                        if (error) return <p>Error: {error.message}</p>
                         return <div>Loaded::: {data.getPerson.name}</div>
                     }}
                 </Query>
@@ -35,4 +31,4 @@ class PageTwo extends Component {
     }
 }
 
-export default PageTwo;
+export default PageTwo

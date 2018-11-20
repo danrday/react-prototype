@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
-import styled, {ThemeProvider, injectGlobal} from 'styled-components'
+import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 
 const theme = {
-    red: '#FF0000',
-    black: '#393939',
-    grey: '#3A3A3A',
-    lightgrey: '#E1E1E1',
-    offWhite: '#EDEDED',
-    maxWidth: '1000px',
-    bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
-};
+  red: '#FF0000',
+  black: '#393939',
+  grey: '#3A3A3A',
+  lightgrey: '#E1E1E1',
+  offWhite: '#EDEDED',
+  maxWidth: '1000px',
+  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+}
 
 injectGlobal`
 html {
@@ -46,49 +46,53 @@ body {
 }
 `
 
-const StyledPage = styled.div`
-  
-`
+const StyledPage = styled.div``
 
 const Inner = styled.div`
   margin-left: 80px;
   margin-top: 80px;
   transition: all 0.2s ease-in-out;
   letter-spacing: 0.2px;
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
-  ${({openMenu}) => openMenu && `
+  ${({ openMenu }) =>
+    openMenu &&
+    `
         margin-left: 230px;
       `}
 `
 
 class Page extends Component {
-    state = {
-        menuIsOpen: false,
-        menuIsHovered: false,
-    }
+  state = {
+    menuIsOpen: false,
+    menuIsHovered: false,
+  }
 
-    handleToggle = () => {
-        this.setState({menuIsOpen: !this.state.menuIsOpen})
-    }
+  handleToggle = () => {
+    this.setState({ menuIsOpen: !this.state.menuIsOpen })
+  }
 
-    handleHover = (bool) => {
-        this.setState({menuIsHovered: bool})
-    }
+  handleHover = bool => {
+    this.setState({ menuIsHovered: bool })
+  }
 
-    render() {
-        return (
-            <ThemeProvider theme={theme}>
-                <StyledPage>
-                    <Meta/>
-                    <Header menuIsOpen={this.state.menuIsOpen || this.state.menuIsHovered} toggle={this.handleToggle} hover={this.handleHover}/>
-                    <Inner openMenu={this.state.menuIsOpen || this.state.menuIsHovered}>
-                        { this.props.children }
-                    </Inner>
-                </StyledPage>
-            </ThemeProvider>
-        );
-    }
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <StyledPage>
+          <Meta />
+          <Header
+            menuIsOpen={this.state.menuIsOpen || this.state.menuIsHovered}
+            toggle={this.handleToggle}
+            hover={this.handleHover}
+          />
+          <Inner openMenu={this.state.menuIsOpen || this.state.menuIsHovered}>
+            {this.props.children}
+          </Inner>
+        </StyledPage>
+      </ThemeProvider>
+    )
+  }
 }
 
-export default Page;
+export default Page
