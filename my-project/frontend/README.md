@@ -1,5 +1,13 @@
 ### Project Dependencies
 
+### App structure
+  - pages/_app.js is our entry point, Next.js recognizes this as a custom 'App' component. This is nice for:
+     - Persisting layout between page changes
+     - Keeping state when navigating pages
+     - Custom error handling using componentDidCatch
+     - Inject additional data into pages (for example by processing GraphQL queries)
+  - We import Link from 'next/link' to use pushstate instead of reloading browser when page changes
+
 Explanation of some of the dependencies of our project for quick reference.
 
 | Dependency | Description |

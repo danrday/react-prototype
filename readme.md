@@ -2,14 +2,6 @@
 
 ![Tech stack: React, Next.js, Apollo, GraphQL-Yoga](./techstack.jpg)
 
-### App structure
-  - pages/_app.js is our entry point, Next.js recognizes this as a custom 'App' component. This is nice for:
-     - Persisting layout between page changes
-     - Keeping state when navigating pages
-     - Custom error handling using componentDidCatch
-     - Inject additional data into pages (for example by processing GraphQL queries)
-  - We import Link from 'next/link' to use pushstate instead of reloading browser when page changes
-
 ### Tech
 `#` Next.js
   - Does all of the tooling for you under the hood (webpack compiling, code-splitting)
