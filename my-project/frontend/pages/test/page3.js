@@ -96,7 +96,15 @@ class FrequencyChart extends React.Component {
                                         "name": "Son of A",
                                         "value": 5,
                                         "type": "steelblue",
-                                        "level": "orange"
+                                        "level": "orange",
+                                        "children": [
+                                            {
+                                                "name": "Son of A",
+                                                "value": 5,
+                                                "type": "steelblue",
+                                                "level": "orange"
+                                            }
+                                        ]
                                     },
                                     {
                                         "name": "Daughter of A",
