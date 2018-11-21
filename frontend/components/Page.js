@@ -3,6 +3,39 @@ import Header from '../components/Header'
 import Meta from '../components/Meta'
 import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 
+class Page extends Component {
+    state = {
+        menuIsOpen: false,
+        menuIsHovered: false,
+    }
+
+    handleToggle = () => {
+        this.setState({ menuIsOpen: !this.state.menuIsOpen })
+    }
+
+    handleHover = bool => {
+        this.setState({ menuIsHovered: bool })
+    }
+
+    render() {
+        return (
+            <ThemeProvider theme={theme}>
+                <StyledPage>
+                    <Meta />
+                    <Header
+                        menuIsOpen={this.state.menuIsOpen || this.state.menuIsHovered}
+                        toggle={this.handleToggle}
+                        hover={this.handleHover}
+                    />
+                    <Inner openMenu={this.state.menuIsOpen || this.state.menuIsHovered}>
+                        {this.props.children}
+                    </Inner>
+                </StyledPage>
+            </ThemeProvider>
+        )
+    }
+}
+
 const theme = {
   red: '#FF0000',
   black: '#393939',
@@ -61,38 +94,5 @@ const Inner = styled.div`
         margin-left: 230px;
       `}
 `
-
-class Page extends Component {
-  state = {
-    menuIsOpen: false,
-    menuIsHovered: false,
-  }
-
-  handleToggle = () => {
-    this.setState({ menuIsOpen: !this.state.menuIsOpen })
-  }
-
-  handleHover = bool => {
-    this.setState({ menuIsHovered: bool })
-  }
-
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-          <Header
-            menuIsOpen={this.state.menuIsOpen || this.state.menuIsHovered}
-            toggle={this.handleToggle}
-            hover={this.handleHover}
-          />
-          <Inner openMenu={this.state.menuIsOpen || this.state.menuIsHovered}>
-            {this.props.children}
-          </Inner>
-        </StyledPage>
-      </ThemeProvider>
-    )
-  }
-}
 
 export default Page

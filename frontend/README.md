@@ -1,5 +1,7 @@
 ### Project Dependencies
 
+next.config.js ::: add custom webpack configurations.
+
 ### App structure
   - pages/_app.js is our entry point, Next.js recognizes this as a custom 'App' component. This is nice for:
      - Persisting layout between page changes
