@@ -29,7 +29,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <StyledHeader openMenu={this.props.navIsOpen}>
+            <StyledHeader openNav={this.props.navIsOpen}>
                 <div className="hamburgerFrame" onClick={this.props.toggle}>
                     <i className="icon ion-navicon-round" />
                 </div>
@@ -41,7 +41,7 @@ class Header extends Component {
                 <NavBar
                     onMouseEnter={() => this.props.hover(true)}
                     onMouseLeave={() => this.props.hover(false)}
-                    openMenu={this.props.navIsOpen}
+                    openNav={this.props.navIsOpen}
                 >
                     {navLinks.map(function(item, i) {
                         return (
@@ -79,8 +79,8 @@ const StyledHeader = styled.div`
         align-items: center;
         justify-content: space-between;
         transition: all 0.2s ease-in-out;
-        ${({ openMenu }) =>
-            openMenu &&
+        ${({ openNav }) =>
+            openNav &&
             `
         left: 230px;
         background: lightgrey;
@@ -118,8 +118,8 @@ const NavBar = styled.div`
     background-color: lightgrey;
     transition: all 0.2s ease-in-out;
     padding-top: 15px;
-    ${({ openMenu }) =>
-        openMenu &&
+    ${({ openNav }) =>
+        openNav &&
         `
         left: 0px;
         width: 230px;

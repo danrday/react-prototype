@@ -32,11 +32,11 @@ class Page extends Component {
                 <StyledPage>
                     <Meta />
                     <Header
-                        menuIsOpen={this.state.navIsOpen || this.state.navIsHovered}
+                        navIsOpen={this.state.navIsOpen || this.state.navIsHovered}
                         toggle={this.handleToggleNav}
                         hover={this.handleHoverNav}
                     />
-                    <Inner openMenu={this.state.navIsOpen || this.state.navIsHovered}>
+                    <Inner openNav={this.state.navIsOpen || this.state.navIsHovered}>
                         {this.props.children}
                     </Inner>
                 </StyledPage>
@@ -54,8 +54,8 @@ const Inner = styled.div`
   letter-spacing: 0.2px;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
-  ${({ openMenu }) =>
-    openMenu &&
+  ${({ openNav }) =>
+    openNav &&
     `
         margin-left: 230px;
       `}
