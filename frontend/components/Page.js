@@ -2,19 +2,28 @@ import React, { Component } from 'react'
 import Header from '../components/Header'
 import Meta from '../components/Meta'
 import styled, { ThemeProvider, injectGlobal } from 'styled-components'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+
+import theme from './styles/theme'
+
+//This is for the loading progress bar at the top when loading pages
+Router.onRouteChangeStart = () => { NProgress.start() }
+Router.onRouteChangeComplete = () => { NProgress.done() }
+Router.onRouteChangeError = () => { NProgress.done() }
 
 class Page extends Component {
     state = {
-        menuIsOpen: false,
-        menuIsHovered: false,
+        navIsOpen: false,
+        navIsHovered: false,
     }
 
-    handleToggle = () => {
-        this.setState({ menuIsOpen: !this.state.menuIsOpen })
+    handleToggleNav = () => {
+        this.setState({ navIsOpen: !this.state.navIsOpen })
     }
 
-    handleHover = bool => {
-        this.setState({ menuIsHovered: bool })
+    handleHoverNav = bool => {
+        this.setState({ navIsHovered: bool })
     }
 
     render() {
@@ -23,11 +32,11 @@ class Page extends Component {
                 <StyledPage>
                     <Meta />
                     <Header
-                        menuIsOpen={this.state.menuIsOpen || this.state.menuIsHovered}
-                        toggle={this.handleToggle}
-                        hover={this.handleHover}
+                        menuIsOpen={this.state.navIsOpen || this.state.navIsHovered}
+                        toggle={this.handleToggleNav}
+                        hover={this.handleHoverNav}
                     />
-                    <Inner openMenu={this.state.menuIsOpen || this.state.menuIsHovered}>
+                    <Inner openMenu={this.state.navIsOpen || this.state.navIsHovered}>
                         {this.props.children}
                     </Inner>
                 </StyledPage>
@@ -35,49 +44,6 @@ class Page extends Component {
         )
     }
 }
-
-const theme = {
-  red: '#FF0000',
-  black: '#393939',
-  grey: '#3A3A3A',
-  lightgrey: '#E1E1E1',
-  offWhite: '#EDEDED',
-  maxWidth: '1000px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
-}
-
-injectGlobal`
-html {
-  box-sizing: border-box;
-  font-size: 10px;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-body {
-  padding: 0;
-  //margin: 0;
-  font-size: 1.5rem;
-  color: #474747;
-}
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3px;
-}
-
-.node text { font: 12px sans-serif; }
-
-.node--internal text {
-  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 2px;
-}
-`
 
 const StyledPage = styled.div``
 
@@ -93,6 +59,39 @@ const Inner = styled.div`
     `
         margin-left: 230px;
       `}
+`
+
+injectGlobal`
+    html {
+      box-sizing: border-box;
+      font-size: 10px;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body {
+      padding: 0;
+      //margin: 0;
+      font-size: 1.5rem;
+      color: #474747;
+    }
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+    
+    .node text { font: 12px sans-serif; }
+    
+    .node--internal text {
+      text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+    }
+    
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
 `
 
 export default Page

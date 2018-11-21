@@ -1,34 +1,22 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Router from 'next/router'
-import NProgress from 'nprogress'
-
-Router.onRouteChangeStart = () => {
-    NProgress.start()
-}
-Router.onRouteChangeComplete = () => {
-    NProgress.done()
-}
-Router.onRouteChangeError = () => {
-    NProgress.done()
-}
 
 const navLinks = [
     {
         link: '/',
         className: 'icon ion-ios-home-outline',
-        menuItemText: 'Dashboard',
+        navItemText: 'Dashboard',
     },
     {
         link: '/page2',
         className: 'icon ion-ios-photos-outline',
-        menuItemText: 'A Page',
+        navItemText: 'A Page',
     },
     {
         link: '/test/page3',
         className: 'icon ion-ios-email-outline',
-        menuItemText: 'Other Page',
+        navItemText: 'Other Page',
     },
 ]
 
@@ -41,7 +29,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <StyledHeader openMenu={this.props.menuIsOpen}>
+            <StyledHeader openMenu={this.props.navIsOpen}>
                 <div className="hamburgerFrame" onClick={this.props.toggle}>
                     <i className="icon ion-navicon-round" />
                 </div>
@@ -53,20 +41,20 @@ class Header extends Component {
                 <NavBar
                     onMouseEnter={() => this.props.hover(true)}
                     onMouseLeave={() => this.props.hover(false)}
-                    openMenu={this.props.menuIsOpen}
+                    openMenu={this.props.navIsOpen}
                 >
                     {navLinks.map(function(item, i) {
                         return (
-                            <Link href={item.link}>
-                                <div className="menuItem">
-                                    <div className="menuIconHolder">
-                                        <div className="menuIcon">
+                            <Link href={item.link} key={item.link}>
+                                <div className="navItem">
+                                    <div className="navIconFrame">
+                                        <div className="navIcon">
                                             <i className={item.className} />
                                         </div>
                                     </div>
 
-                                    <div className="menuItemText">
-                                        {item.menuItemText}
+                                    <div className="navItemText">
+                                        {item.navItemText}
                                     </div>
                                 </div>
                             </Link>
@@ -79,7 +67,6 @@ class Header extends Component {
 }
 
 const StyledHeader = styled.div`
-    & {
         height: 60px;
         position: fixed;
         top: 0;
@@ -98,7 +85,6 @@ const StyledHeader = styled.div`
         left: 230px;
         background: lightgrey;
       `}
-    }
     .projectTitle {
         font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
         font-size: 2rem;
@@ -140,7 +126,7 @@ const NavBar = styled.div`
         background: lightgrey;
       `}
       
-    .menuItem {
+    .navItem {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -152,18 +138,18 @@ const NavBar = styled.div`
             cursor: pointer;
         }
     }
-    .menuIconHolder {
+    .navIconFrame {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 60px;
         position: fixed;
     }
-    .menuIcon {
+    .navIcon {
       font-size: 22px;
       transition: all 0.2s ease-in-out;
     }
-    .menuItemText {
+    .navItemText {
         white-space: nowrap;
         margin-left: 65px;
         margin-right: auto;
