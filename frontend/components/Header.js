@@ -32,8 +32,8 @@ class Header extends Component {
             <StyledHeader openNav={this.props.navIsOpen}>
                 <div className="hamburgerFrame" onClick={this.props.toggle}>
                     <div className="iconFrame">
-                        <i className="icon1 icon ion-navicon-round" />
-                        <i className="icon2 icon ion-close" />
+                        <i className="hamburger icon ion-navicon-round" />
+                        <i className="close icon ion-close" />
                     </div>
                 </div>
 
@@ -96,22 +96,22 @@ const StyledHeader = styled.div`
         letter-spacing: -1px;
     }
     .iconFrame {
-        .icon2 {
+        .close {
             position: absolute;
             opacity: 0;
         }
-        .icon1 {
+        .hamburger {
             opacity: 1;
         }
         transition: all 0.2s ease-in-out;
         ${({ openNav }) =>
             openNav &&
             `       
-              .icon2 {
+              .close {
                   position: relative;
                   opacity: 1;
               }
-              .icon1 {
+              .hamburger {
                   opacity: 0;
                   position: absolute;
               }
@@ -135,10 +135,12 @@ const StyledHeader = styled.div`
         ${({ openNav }) =>
             openNav &&
             `
-            margin-left: 170px;
+            margin-left: 120px;
+            background-color: #fff6f5;
+
           `}
         &:hover {
-            background-color: lightsteelblue;
+            background-color: #e5fdff;
         }
     }
 `
@@ -150,15 +152,15 @@ const NavBar = styled.div`
     bottom: 0;
     z-index: 100;
     width: 60px;
-    background-color: lightgrey;
+    background-color: #d1e8e3;
     transition: all 0.2s ease-in-out;
     padding-top: 15px;
     ${({ openNav }) =>
         openNav &&
         `
         left: 0px;
-        width: 230px;
-        background: lightgrey;
+        width: 180px;
+        background: #ffb5be;
       `}
 
     .navItem {
