@@ -31,7 +31,10 @@ class Header extends Component {
         return (
             <StyledHeader openNav={this.props.navIsOpen}>
                 <div className="hamburgerFrame" onClick={this.props.toggle}>
-                    <i className="icon ion-navicon-round" />
+                    <div className="iconFrame">
+                        <i className="icon1 icon ion-navicon-round" />
+                        <i className="icon2 icon ion-close" />
+                    </div>
                 </div>
 
                 <div className="projectTitle">
@@ -67,23 +70,23 @@ class Header extends Component {
 }
 
 const StyledHeader = styled.div`
-        height: 60px;
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-        background-color: #fff;
-        box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.16);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: all 0.2s ease-in-out;
-        ${({ openNav }) =>
-            openNav &&
-            `
-        left: 230px;
-        background: lightgrey;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease-in-out;
+    ${({ openNav }) =>
+        openNav &&
+        `
+        // left: 170px;
+        // background: lightgrey;
       `}
     .projectTitle {
         font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
@@ -91,6 +94,33 @@ const StyledHeader = styled.div`
         margin-right: 20px;
         margin-bottom: 0px;
         letter-spacing: -1px;
+    }
+    .iconFrame {
+        .icon2 {
+            position: absolute;
+            opacity: 0;
+        }
+        .icon1 {
+            opacity: 1;
+        }
+        transition: all 0.2s ease-in-out;
+        ${({ openNav }) =>
+            openNav &&
+            `       
+              .icon2 {
+                  position: relative;
+                  opacity: 1;
+              }
+              .icon1 {
+                  opacity: 0;
+                  position: absolute;
+              }
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+          `}
     }
     .hamburgerFrame {
         width: 60px;
@@ -102,6 +132,11 @@ const StyledHeader = styled.div`
         color: #868e96;
         font-size: 20px;
         transition: all 0.2s ease-in-out;
+        ${({ openNav }) =>
+            openNav &&
+            `
+            margin-left: 170px;
+          `}
         &:hover {
             background-color: lightsteelblue;
         }
@@ -125,7 +160,7 @@ const NavBar = styled.div`
         width: 230px;
         background: lightgrey;
       `}
-      
+
     .navItem {
         display: flex;
         flex-direction: row;
@@ -146,8 +181,8 @@ const NavBar = styled.div`
         position: fixed;
     }
     .navIcon {
-      font-size: 22px;
-      transition: all 0.2s ease-in-out;
+        font-size: 22px;
+        transition: all 0.2s ease-in-out;
     }
     .navItemText {
         white-space: nowrap;
