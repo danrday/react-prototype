@@ -42,13 +42,13 @@ class Header extends Component {
     render() {
         return (
             <StyledHeader openMenu={this.props.menuIsOpen}>
-                <HamburgerHolder onClick={this.props.toggle}>
+                <div className="hamburgerFrame" onClick={this.props.toggle}>
                     <i className="icon ion-navicon-round" />
-                </HamburgerHolder>
+                </div>
 
-                <Title>
+                <div className="projectTitle">
                     <h4>Title</h4>
-                </Title>
+                </div>
 
                 <NavBar
                     onMouseEnter={() => this.props.hover(true)}
@@ -58,17 +58,17 @@ class Header extends Component {
                     {navLinks.map(function(item, i) {
                         return (
                             <Link href={item.link}>
-                                <MenuItem>
-                                    <MenuIconHolder>
-                                        <MenuIcon>
+                                <div className="menuItem">
+                                    <div className="menuIconHolder">
+                                        <div className="menuIcon">
                                             <i className={item.className} />
-                                        </MenuIcon>
-                                    </MenuIconHolder>
+                                        </div>
+                                    </div>
 
-                                    <MenuItemText>
+                                    <div className="menuItemText">
                                         {item.menuItemText}
-                                    </MenuItemText>
-                                </MenuItem>
+                                    </div>
+                                </div>
                             </Link>
                         )
                     })}
@@ -99,20 +99,26 @@ const StyledHeader = styled.div`
         background: lightgrey;
       `}
     }
-`
-
-const HamburgerHolder = styled.div`
-    width: 60px;
-    height: 60px;
-    border-right: 1px solid rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #868e96;
-    font-size: 20px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        background-color: lightsteelblue;
+    .projectTitle {
+        font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 2rem;
+        margin-right: 20px;
+        margin-bottom: 0px;
+        letter-spacing: -1px;
+    }
+    .hamburgerFrame {
+        width: 60px;
+        height: 60px;
+        border-right: 1px solid rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #868e96;
+        font-size: 20px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: lightsteelblue;
+        }
     }
 `
 
@@ -133,49 +139,38 @@ const NavBar = styled.div`
         width: 230px;
         background: lightgrey;
       `}
-`
-
-const MenuIconHolder = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 60px;
-    position: fixed;
-`
-
-const MenuIcon = styled.div`
-    font-size: 22px;
-    transition: all 0.2s ease-in-out;
-`
-
-const MenuItemText = styled.div`
-    white-space: nowrap;
-    margin-left: 65px;
-    margin-right: auto;
-    letter-spacing: 0.2px;
-    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px;
-`
-
-const MenuItem = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: hidden;
-    height: 30px;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        background-color: mintcream;
-        cursor: pointer;
+      
+    .menuItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: hidden;
+        height: 30px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: mintcream;
+            cursor: pointer;
+        }
     }
-`
-
-const Title = styled.div`
-    font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 2rem;
-    margin-right: 20px;
-    margin-bottom: 0px;
-    letter-spacing: -1px;
+    .menuIconHolder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60px;
+        position: fixed;
+    }
+    .menuIcon {
+      font-size: 22px;
+      transition: all 0.2s ease-in-out;
+    }
+    .menuItemText {
+        white-space: nowrap;
+        margin-left: 65px;
+        margin-right: auto;
+        letter-spacing: 0.2px;
+        font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+    }
 `
 
 export default Header
