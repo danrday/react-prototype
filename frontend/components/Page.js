@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../components/Header'
+import NavAndHeader from './NavAndHeader'
 import Meta from '../components/Meta'
 import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 import Router from 'next/router'
@@ -8,9 +8,15 @@ import NProgress from 'nprogress'
 import theme from './styles/theme'
 
 //This is for the loading progress bar at the top when loading pages
-Router.onRouteChangeStart = () => { NProgress.start() }
-Router.onRouteChangeComplete = () => { NProgress.done() }
-Router.onRouteChangeError = () => { NProgress.done() }
+Router.onRouteChangeStart = () => {
+    NProgress.start()
+}
+Router.onRouteChangeComplete = () => {
+    NProgress.done()
+}
+Router.onRouteChangeError = () => {
+    NProgress.done()
+}
 
 class Page extends Component {
     state = {
@@ -31,13 +37,17 @@ class Page extends Component {
             <ThemeProvider theme={theme}>
                 <StyledPage>
                     <Meta />
-                    <Header
+                    <NavAndHeader
                         navIsOpen={this.state.navIsOpen}
                         navIsHovered={this.state.navIsHovered}
                         toggle={this.handleToggleNav}
                         hover={this.handleHoverNav}
                     />
-                    <Inner openNav={this.state.navIsOpen || this.state.navIsHovered}>
+                    <Inner
+                        openNav={
+                            this.state.navIsOpen || this.state.navIsHovered
+                        }
+                    >
                         {this.props.children}
                     </Inner>
                 </StyledPage>
@@ -49,15 +59,15 @@ class Page extends Component {
 const StyledPage = styled.div``
 
 const Inner = styled.div`
-  margin-left: 80px;
-  margin-top: 80px;
-  transition: all 0.2s ease-in-out;
-  letter-spacing: 0.2px;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 14px;
-  ${({ openNav }) =>
-    openNav &&
-    `
+    margin-left: 80px;
+    margin-top: 80px;
+    transition: all 0.2s ease-in-out;
+    letter-spacing: 0.2px;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    ${({ openNav }) =>
+        openNav &&
+        `
         margin-left: 230px;
       `}
 `

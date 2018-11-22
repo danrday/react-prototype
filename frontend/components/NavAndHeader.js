@@ -12,6 +12,18 @@ const navLinks = [
         link: '/page2',
         className: 'icon ion-ios-photos-outline',
         navItemText: 'A Page',
+        subItems: [
+            {
+                link: '/sub1',
+                className: 'icon ion-ios-home-outline',
+                navItemText: 'Subpage 1',
+            },
+            {
+                link: '/sub2',
+                className: 'icon ion-ios-home-outline',
+                navItemText: 'Subpage 1',
+            },
+        ],
     },
     {
         link: '/test/page3',
@@ -20,13 +32,7 @@ const navLinks = [
     },
 ]
 
-class Header extends Component {
-    // state = {
-    //     hovering: false,
-    // }
-    // handleHover = () => {
-    //     this.setState({ hovering: !this.state.hovering })
-    // }
+class NavAndHeader extends Component {
     render() {
         return (
             <StyledHeader openNav={this.props.navIsOpen}>
@@ -157,7 +163,7 @@ const NavBar = styled.div`
     transition: all 0.2s ease-in-out;
     padding-top: 15px;
     ${({ openNav, hoverNav }) =>
-    (openNav || hoverNav) &&
+        (openNav || hoverNav) &&
         `
         left: 0px;
         width: 180px;
@@ -197,4 +203,4 @@ const NavBar = styled.div`
     }
 `
 
-export default Header
+export default NavAndHeader

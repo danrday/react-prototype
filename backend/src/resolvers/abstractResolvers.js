@@ -2,7 +2,7 @@ const { createResolver } = require('apollo-resolvers')
 const { createError, isInstance } = require('apollo-errors')
 const { UnknownError, UnauthorizedError, ForbiddenError } = require('./errors')
 
-// Abstract Resolvers /////////////////////////////////////////////////
+// Abstract Resolvers::::::::::
 
 const baseResolver = createResolver(
     //incoming requests will pass through this resolver like a no-op
