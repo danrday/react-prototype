@@ -33,6 +33,12 @@ const navLinks = [
 ]
 
 class NavAndHeader extends Component {
+    state = {
+        selected: null
+    }
+    handleSelected (i) {
+        this.setState({selected: i})
+    }
     render() {
         return (
             <StyledHeader openNav={this.props.navIsOpen}>
@@ -53,10 +59,10 @@ class NavAndHeader extends Component {
                     openNav={this.props.navIsOpen}
                     hoverNav={this.props.navIsHovered}
                 >
-                    {navLinks.map(function(item, i) {
+                    {navLinks.map((item, i) => {
                         return (
                             <Link href={item.link} key={item.link}>
-                                <div className="navItem">
+                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={(i === this.state.selected)}>
                                     <div className="navIconFrame">
                                         <div className="navIcon">
                                             <i className={item.className} />
@@ -66,7 +72,7 @@ class NavAndHeader extends Component {
                                     <div className="navItemText">
                                         {item.navItemText}
                                     </div>
-                                </div>
+                                </NavItem>
                             </Link>
                         )
                     })}
@@ -169,8 +175,9 @@ const NavBar = styled.div`
         width: 180px;
         background: #d6ebf2;
       `}
+    `
 
-    .navItem {
+    const NavItem = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -181,26 +188,32 @@ const NavBar = styled.div`
             background-color: mintcream;
             cursor: pointer;
         }
-    }
-    .navIconFrame {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 60px;
-        position: fixed;
-    }
-    .navIcon {
-        font-size: 22px;
-        transition: all 0.2s ease-in-out;
-    }
-    .navItemText {
-        white-space: nowrap;
-        margin-left: 65px;
-        margin-right: auto;
-        letter-spacing: 0.2px;
-        font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 14px;
-    }
-`
+        
+        ${({isSelected}) =>
+        isSelected &&
+        `
+        background-color: white;
+        `}
+
+        .navIconFrame {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px;
+            position: fixed;
+        }
+        .navIcon {
+            font-size: 22px;
+            transition: all 0.2s ease-in-out;
+        }
+        .navItemText {
+            white-space: nowrap;
+            margin-left: 65px;
+            margin-right: auto;
+            letter-spacing: 0.2px;
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+        }
+    `
 
 export default NavAndHeader
