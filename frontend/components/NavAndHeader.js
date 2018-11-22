@@ -34,10 +34,14 @@ const navLinks = [
 
 class NavAndHeader extends Component {
     state = {
-        selected: null
+        selected: null,
+        selectedSubItem: null
     }
-    handleSelected (i) {
-        this.setState({selected: i})
+    handleSelected(i) {
+        this.setState({ selected: i })
+    }
+    handleSelectedSubItem(i) {
+        this.setState({selectedSubItem: i})
     }
     render() {
         return (
@@ -64,29 +68,46 @@ class NavAndHeader extends Component {
                         const subItems = item.subItems
                         return (
                             <div key={item.link}>
-
-                            <Link href={item.link} >
-                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={isSelected}>
-                                    {console.log("HELLO!", isSelected, subItems)}
-                                    <div className="navIconFrame">
-                                        <div className="navIcon">
-                                            <i className={item.className} />
+                                <Link href={item.link}>
+                                    <NavItem
+                                        onClick={() => {
+                                            this.handleSelected(i)
+                                        }}
+                                        isSelected={isSelected}
+                                    >
+                                        <div className="navIconFrame">
+                                            <div className="navIcon">
+                                                <i className={item.className} />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="navItemText">
-                                        {item.navItemText}
-                                    </div>
-                                </NavItem>
-                            </Link>
+                                        <div className="navItemText">
+                                            {item.navItemText}
+                                        </div>
+                                    </NavItem>
+                                </Link>
 
-                                {isSelected && subItems && (
+                                {isSelected &&
+                                    subItems &&
                                     subItems.map((item, i) => {
+                                        const isSelectedSubItem = i === this.state.selectedSubItem
                                         return (
-                                            <Link href={item.link} key={item.link}>
-                                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={isSelected}>
+                                            <Link
+                                                href={item.link}
+                                                key={item.link}
+                                            >
+                                                <NavItem
+                                                    onClick={() => {
+                                                        this.handleSelectedSubItem(i)
+                                                    }}
+                                                    isSelected={isSelectedSubItem}
+                                                >
                                                     <div className="navIconFrame">
                                                         <div className="navIcon">
-                                                            <i className={item.className} />
+                                                            <i
+                                                                className={
+                                                                    item.className
+                                                                }
+                                                            />
                                                         </div>
                                                     </div>
                                                     <div className="navItemText">
@@ -95,10 +116,7 @@ class NavAndHeader extends Component {
                                                 </NavItem>
                                             </Link>
                                         )
-                                    })
-                                )}
-
-
+                                    })}
                             </div>
                         )
                     })}
@@ -201,45 +219,45 @@ const NavBar = styled.div`
         width: 180px;
         background: #d6ebf2;
       `}
-    `
+`
 
-    const NavItem = styled.div`
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow-x: hidden;
-        height: 30px;
-        transition: all 0.2s ease-in-out;
-        &:hover {
-            background-color: mintcream;
-            cursor: pointer;
-        }
-        
-        ${({isSelected}) =>
+const NavItem = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: hidden;
+    height: 30px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        background-color: mintcream;
+        cursor: pointer;
+    }
+
+    ${({ isSelected }) =>
         isSelected &&
         `
         background-color: white;
         `}
 
-        .navIconFrame {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 60px;
-            position: fixed;
-        }
-        .navIcon {
-            font-size: 22px;
-            transition: all 0.2s ease-in-out;
-        }
-        .navItemText {
-            white-space: nowrap;
-            margin-left: 65px;
-            margin-right: auto;
-            letter-spacing: 0.2px;
-            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            font-size: 14px;
-        }
-    `
+    .navIconFrame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60px;
+        position: fixed;
+    }
+    .navIcon {
+        font-size: 22px;
+        transition: all 0.2s ease-in-out;
+    }
+    .navItemText {
+        white-space: nowrap;
+        margin-left: 65px;
+        margin-right: auto;
+        letter-spacing: 0.2px;
+        font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 14px;
+    }
+`
 
 export default NavAndHeader
