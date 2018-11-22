@@ -21,7 +21,7 @@ const navLinks = [
             {
                 link: '/sub2',
                 className: 'icon ion-ios-home-outline',
-                navItemText: 'Subpage 1',
+                navItemText: 'Subpage 2!',
             },
         ],
     },
@@ -60,20 +60,46 @@ class NavAndHeader extends Component {
                     hoverNav={this.props.navIsHovered}
                 >
                     {navLinks.map((item, i) => {
+                        const isSelected = i === this.state.selected
+                        const subItems = item.subItems
                         return (
-                            <Link href={item.link} key={item.link}>
-                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={(i === this.state.selected)}>
+                            <div key={item.link}>
+
+                            <Link href={item.link} >
+                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={isSelected}>
+                                    {console.log("HELLO!", isSelected, subItems)}
                                     <div className="navIconFrame">
                                         <div className="navIcon">
                                             <i className={item.className} />
                                         </div>
                                     </div>
-
                                     <div className="navItemText">
                                         {item.navItemText}
                                     </div>
                                 </NavItem>
                             </Link>
+
+                                {isSelected && subItems && (
+                                    subItems.map((item, i) => {
+                                        return (
+                                            <Link href={item.link} key={item.link}>
+                                                <NavItem onClick={() => {this.handleSelected(i)}} isSelected={isSelected}>
+                                                    <div className="navIconFrame">
+                                                        <div className="navIcon">
+                                                            <i className={item.className} />
+                                                        </div>
+                                                    </div>
+                                                    <div className="navItemText">
+                                                        {item.navItemText}
+                                                    </div>
+                                                </NavItem>
+                                            </Link>
+                                        )
+                                    })
+                                )}
+
+
+                            </div>
                         )
                     })}
                 </NavBar>
