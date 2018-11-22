@@ -21,12 +21,12 @@ const navLinks = [
 ]
 
 class Header extends Component {
-    state = {
-        hovering: false,
-    }
-    handleHover = () => {
-        this.setState({ hovering: !this.state.hovering })
-    }
+    // state = {
+    //     hovering: false,
+    // }
+    // handleHover = () => {
+    //     this.setState({ hovering: !this.state.hovering })
+    // }
     render() {
         return (
             <StyledHeader openNav={this.props.navIsOpen}>
@@ -45,6 +45,7 @@ class Header extends Component {
                     onMouseEnter={() => this.props.hover(true)}
                     onMouseLeave={() => this.props.hover(false)}
                     openNav={this.props.navIsOpen}
+                    hoverNav={this.props.navIsHovered}
                 >
                     {navLinks.map(function(item, i) {
                         return (
@@ -155,12 +156,12 @@ const NavBar = styled.div`
     background-color: #d1e8e3;
     transition: all 0.2s ease-in-out;
     padding-top: 15px;
-    ${({ openNav }) =>
-        openNav &&
+    ${({ openNav, hoverNav }) =>
+    (openNav || hoverNav) &&
         `
         left: 0px;
         width: 180px;
-        background: #ffb5be;
+        background: #d6ebf2;
       `}
 
     .navItem {

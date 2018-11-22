@@ -32,7 +32,8 @@ class Page extends Component {
                 <StyledPage>
                     <Meta />
                     <Header
-                        navIsOpen={this.state.navIsOpen || this.state.navIsHovered}
+                        navIsOpen={this.state.navIsOpen}
+                        navIsHovered={this.state.navIsHovered}
                         toggle={this.handleToggleNav}
                         hover={this.handleHoverNav}
                     />
