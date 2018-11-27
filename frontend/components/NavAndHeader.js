@@ -1,36 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-
-const navLinks = [
-    {
-        link: '/',
-        className: 'icon ion-ios-home-outline',
-        navItemText: 'Dashboard',
-    },
-    {
-        link: '/page2',
-        className: 'icon ion-ios-photos-outline',
-        navItemText: 'A Page',
-        subItems: [
-            {
-                link: '/sub1',
-                className: 'icon ion-ios-home-outline',
-                navItemText: 'Subpage 1',
-            },
-            {
-                link: '/sub2',
-                className: 'icon ion-ios-home-outline',
-                navItemText: 'Subpage 2!',
-            },
-        ],
-    },
-    {
-        link: '/test/page3',
-        className: 'icon ion-ios-email-outline',
-        navItemText: 'Other Page',
-    },
-]
+import navLinks from './NavLinks'
 
 class NavAndHeader extends Component {
     state = {
@@ -43,7 +14,7 @@ class NavAndHeader extends Component {
     handleSelectedSubItem(i) {
         this.setState({selectedSubItem: i})
     }
-    render() {
+    render(data) {
         return (
             <StyledHeader openNav={this.props.navIsOpen}>
                 <div className="hamburgerFrame" onClick={this.props.toggle}>
@@ -100,6 +71,7 @@ class NavAndHeader extends Component {
                                                         this.handleSelectedSubItem(i)
                                                     }}
                                                     isSelected={isSelectedSubItem}
+                                                    isSubItem={true}
                                                 >
                                                     <div className="navIconFrame">
                                                         <div className="navIcon">
