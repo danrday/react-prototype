@@ -6,13 +6,13 @@ import navLinks from './NavLinks'
 class NavAndHeader extends Component {
     state = {
         selected: null,
-        selectedSubItem: null
+        selectedSubItem: null,
     }
     handleSelected(i) {
         this.setState({ selected: i })
     }
     handleSelectedSubItem(i) {
-        this.setState({selectedSubItem: i})
+        this.setState({ selectedSubItem: i })
     }
     render(data) {
         return (
@@ -60,7 +60,8 @@ class NavAndHeader extends Component {
                                 {isSelected &&
                                     subItems &&
                                     subItems.map((item, i) => {
-                                        const isSelectedSubItem = i === this.state.selectedSubItem
+                                        const isSelectedSubItem =
+                                            i === this.state.selectedSubItem
                                         return (
                                             <Link
                                                 href={item.link}
@@ -68,9 +69,13 @@ class NavAndHeader extends Component {
                                             >
                                                 <NavItem
                                                     onClick={() => {
-                                                        this.handleSelectedSubItem(i)
+                                                        this.handleSelectedSubItem(
+                                                            i,
+                                                        )
                                                     }}
-                                                    isSelected={isSelectedSubItem}
+                                                    isSelected={
+                                                        isSelectedSubItem
+                                                    }
                                                     isSubItem={true}
                                                 >
                                                     <div className="navIconFrame">
