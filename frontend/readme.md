@@ -10,6 +10,11 @@ next.config.js ::: add custom webpack configurations.
      - Inject additional data into pages (for example by processing GraphQL queries)
   - We import Link from 'next/link' to use pushstate instead of reloading browser when page changes
 
+
+   - [pages/_document.js ](https://nextjs.org/docs/#custom-document) is only rendered on the server side, needed to ensure that the client has the necessary css before it renders, otherwise there
+   will be a quick flash of unstyled page before all the css loads.
+
+
 Explanation of some of the dependencies of our project for quick reference.
 
 | Dependency | Description |

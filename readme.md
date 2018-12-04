@@ -1,6 +1,7 @@
 # React Boiler Plate Project
 
 ![Tech stack: React, Next.js, Apollo, GraphQL-Yoga](./techstack.jpg)
+Image credit: Wes Bos from [Advanced React](https://www.advancedreact.com)
 
 ### Tech
 `#` Next.js
@@ -31,6 +32,11 @@ cd into backend and frontend directories and npm install.
 ```sh
 $ npm run dev
 ```
+
+Credits
+---
+Stack & set-up: Wes Bos [Advanced React](https://www.advancedreact.com)
+If you want a better understanding of this stack I highly recommend this course!
 
 License
 ----
