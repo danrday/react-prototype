@@ -17,7 +17,7 @@ const navLinks = [
             {
                 link: '/test/force2',
                 className: 'icon ion-ios-home-outline',
-                navItemText: 'Force 2',
+                navItemText:context: 'Force 2',
             },
             {
                 link: '/test/heirarchy',
