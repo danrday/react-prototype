@@ -18,3 +18,8 @@ info: ...not sure about this one, but read that it is normally not needed (https
 
 about the  requireResolversForResolveType: false in createServer.js:::::
 https://github.com/prisma/prisma/issues/2225
+
+
+to do:::
+replace data loader with 'data sources'
+(https://blog.apollographql.com/easy-and-performant-graphql-over-rest-e02796993b2b?_ga=2.91865810.938685030.1544117365-1477223043.1539791929)
