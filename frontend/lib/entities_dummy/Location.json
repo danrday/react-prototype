@@ -1,0 +1,9 @@
+[
+  {
+    "LocationId": "5c2d2083e20ecc2ddc0794cb",
+    "ParentLocationId": null,
+    "LocationNameDisplayName": "Room 101",
+    "LocationTypeId": "5c2d2083e20ecc2ddc0794cb",
+    "__typename": "Location"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "UserRoleTypeId": "5c2d20836e400d8b3acf3a1f",
+    "UserRoleDisplayName": "Charge Nurse",
+    "IsSystem": true,
+    "__typename": "UserRoleType"
+  },
+  {
+    "UserRoleTypeId": "5c2d2083aeecd82c52c394b4",
+    "UserRoleDisplayName": "Registered Nurse",
+    "IsSystem": true,
+    "__typename": "UserRoleType"
+  },
+  {
+    "UserRoleTypeId": "5c2d208368a22cb0b6276cd4",
+    "UserRoleDisplayName": "Case Manager",
+    "IsSystem": true,
+    "__typename": "UserRoleType"
+  },
+  {
+    "UserRoleTypeId": "5c2d2083e714e57bb6372a44",
+    "UserRoleDisplayName": "Registered Tech",
+    "IsSystem": true,
+    "__typename": "UserRoleType"
+  },
+  {
+    "UserRoleTypeId": "5c2d2083d23307aca455f5c3",
+    "UserRoleDisplayName": "Tech",
+    "IsSystem": true,
+    "__typename": "UserRoleType"
+  }
+]

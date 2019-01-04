@@ -1,0 +1,10 @@
+[
+  {
+    "PatientId": "5c2cd8f8a65caa4eaac08dcb",
+    "FirstName": "Neva",
+    "LastName": "Thornton",
+    "LocationId": "5c2d2083e20ecc2ddc0794cb",
+    "FhirResourceUrl": "fhir.com/patientstuff",
+    "__typename": "Patient"
+  }
+]
