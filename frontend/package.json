@@ -4,8 +4,9 @@
   "description": "Boilerplate for React, GraphQL, Next and Apollo",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 8888",
+    "dev": "next -p 8887",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "test": "NODE_ENV=test jest --watch",
     "test-win": "SET NODE_ENV=test&& jest --watch",
